@@ -1,0 +1,160 @@
+{% extends "base_generic.html" %}
+
+{% block formBlock %}
+    <form action="" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock formBlock %}
+
+{% block content %}
+
+{% if comment_list %}
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="card-columns">
+      {% for comment in comment_list %}
+      <div class="card w-100" style="">
+        {% if comment.hasImage %}
+        <img class="card-img-top img-responsive" src="{{ comment.image.url }}" alt="Card image cap">
+        {% endif %}
+        <div class="card-body">
+          <p class="card-text">{{ comment.commentText }}</p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+      {% endfor %}
+
+      <div class="card w-80" style="">
+        <img class="card-img-top img-responsive" src="https://i.imgur.com/FTBSFo7.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">prueba </p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+
+      <div class="card w-10" style="">
+        <img class="card-img-top img-responsive" src="http://www.cooperindustries.com/content/dam/public/safety/notification/products/Mass%20Notification%20Systems/Spotlight/MNS_WideArea_Spotlight3.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">prueba </p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+
+      <div class="card w-10" style="">
+        <img class="card-img-top img-responsive" src="http://www.cooperindustries.com/content/dam/public/safety/notification/products/Mass%20Notification%20Systems/Spotlight/MNS_WideArea_Spotlight3.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">prueba </p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+
+      <div class="card w-10" style="">
+        <img class="card-img-top img-responsive" src="http://www.cooperindustries.com/content/dam/public/safety/notification/products/Mass%20Notification%20Systems/Spotlight/MNS_WideArea_Spotlight3.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">prueba </p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+
+      <div class="card w-10" style="">
+        <img class="card-img-top img-responsive" src="http://www.cooperindustries.com/content/dam/public/safety/notification/products/Mass%20Notification%20Systems/Spotlight/MNS_WideArea_Spotlight3.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">prueba </p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+
+      <div class="card w-10" style="">
+        <img class="card-img-top img-responsive" src="http://www.cooperindustries.com/content/dam/public/safety/notification/products/Mass%20Notification%20Systems/Spotlight/MNS_WideArea_Spotlight3.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">prueba </p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+
+      <div class="card w-10" style="">
+        <img class="card-img-top img-responsive" src="http://www.cooperindustries.com/content/dam/public/safety/notification/products/Mass%20Notification%20Systems/Spotlight/MNS_WideArea_Spotlight3.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">prueba </p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+
+      <div class="card w-10" style="">
+        <img class="card-img-top img-responsive" src="http://www.cooperindustries.com/content/dam/public/safety/notification/products/Mass%20Notification%20Systems/Spotlight/MNS_WideArea_Spotlight3.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">prueba </p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+
+      <div class="card w-10" style="">
+        <img class="card-img-top img-responsive" src="http://www.cooperindustries.com/content/dam/public/safety/notification/products/Mass%20Notification%20Systems/Spotlight/MNS_WideArea_Spotlight3.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">prueba </p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+
+      <div class="card w-10" style="">
+        <img class="card-img-top img-responsive" src="http://www.cooperindustries.com/content/dam/public/safety/notification/products/Mass%20Notification%20Systems/Spotlight/MNS_WideArea_Spotlight3.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">prueba </p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+
+      <div class="card w-10" style="">
+        <img class="card-img-top img-responsive" src="http://www.cooperindustries.com/content/dam/public/safety/notification/products/Mass%20Notification%20Systems/Spotlight/MNS_WideArea_Spotlight3.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">prueba </p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+
+      <div class="card w-10" style="">
+        <img class="card-img-top img-responsive" src="http://www.cooperindustries.com/content/dam/public/safety/notification/products/Mass%20Notification%20Systems/Spotlight/MNS_WideArea_Spotlight3.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">prueba </p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+
+      <div class="card w-10" style="">
+        <img class="card-img-top img-responsive" src="http://www.cooperindustries.com/content/dam/public/safety/notification/products/Mass%20Notification%20Systems/Spotlight/MNS_WideArea_Spotlight3.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">prueba </p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+
+      <div class="card w-10" style="">
+        <img class="card-img-top img-responsive" src="http://www.cooperindustries.com/content/dam/public/safety/notification/products/Mass%20Notification%20Systems/Spotlight/MNS_WideArea_Spotlight3.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">prueba </p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+
+      <div class="card w-10" style="">
+        <img class="card-img-top img-responsive" src="http://www.cooperindustries.com/content/dam/public/safety/notification/products/Mass%20Notification%20Systems/Spotlight/MNS_WideArea_Spotlight3.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">prueba </p>
+          <a href="#" class="btn btn-primary">like</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% else %}
+<a>No hay comentarios</a>
+
+{% endif %}
+
+{% endblock content %}
