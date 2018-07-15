@@ -1,15 +1,19 @@
-from django.views.generic.list import ListView
 from django.views import generic, View
+# Generic Views
 from django.views.generic.edit import SingleObjectMixin, FormView
-from django.shortcuts import render
-from principal.models import Comment
-from .forms import CreatePost
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+
 from django.urls import reverse
+from django.shortcuts import render
+from principal.models import Post
+from .forms import CreatePost
 
 
-class CommentListView(ListView):
 
-    model = Comment
+class PostListView(ListView):
+
+    model = Post
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -18,8 +22,8 @@ class CommentListView(ListView):
         return context
 
 
-class CommentForm(FormView):
-    template_name = "principal/comment_list.html"
+class ListFormView(FormView):
+    template_name = "principal/post_list.html"
     form_class = CreatePost
 
     def post(self, request, *args, **kwargs):
@@ -29,17 +33,10 @@ class CommentForm(FormView):
         return reverse('index')
 
     def form_valid(self, form):
-        commentRow = Comment()
-        # commentRow.image = form.cleaned_data['image']
-        # commentRow.commentText = form.cleaned_data['message']
-        commentRow = Comment(image=form.cleaned_data['image'],
-                             commentText=form.cleaned_data['message'])
-        commentRow.save()
-        # reviewMo = Review(textReview=form.cleaned_data['message'],
-                          # titleReview="temp",
-                          # ratingReview=form.cleaned_data['rating'])
-        # reviewMo.save()
-        # self.object.reviews.add(reviewMo)
+        print(form.cleaned_data['image'])
+        postRow = Post(image=form.cleaned_data['image'],
+                             postText=form.cleaned_data['message'])
+        postRow.save()
         print("form is valid")
         return super().form_valid(form)
 
@@ -47,9 +44,13 @@ class CommentForm(FormView):
 class Index(View):
 
     def get(self, request, *args, **kwargs):
-        view = CommentListView.as_view()
+        view = PostListView.as_view()
         return view(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        view = CommentForm.as_view()
+        view = ListFormView.as_view()
         return view(request, *args, **kwargs)
+
+class PostDetailView(DetailView):
+
+    model = Post

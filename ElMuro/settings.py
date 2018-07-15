@@ -121,5 +121,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 
-MEDIA_ROOT = '/home/emmanuel/sources/ElMuro/'
+MEDIA_ROOT = '/home/ema/source/ElMuro/media/'
 MEDIA_URL = '/media/'

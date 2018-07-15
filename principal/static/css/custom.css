@@ -9,6 +9,9 @@ https://stackoverflow.com/questions/34140793/bootstrap-4-responsive-cards-in-car
 }
 
 @media (min-width: 768px) {
+    .nav {
+        font-size: 1.5rem;
+    }
     .card-columns {
         column-count: 3;
     }
@@ -16,12 +19,25 @@ https://stackoverflow.com/questions/34140793/bootstrap-4-responsive-cards-in-car
 
 @media (min-width: 992px) {
     .card-columns {
-        column-count: 4;
+        column-count: 3;
     }
 }
 
 @media (min-width: 1200px) {
     .card-columns {
-        column-count: 4;
+        column-count: 3;
     }
+}
+
+i {
+    font-size: 2rem;
+    color: red;
+    /* background: linear-gradient(to left, #ff0000, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+}
+
+.like-counter {
+    margin-top: 5px;
+    margin-left: 10px;
 }

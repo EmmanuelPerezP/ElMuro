@@ -9,8 +9,22 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+
+
   </head>
   <body>
+    <!-- Load Facebook SDK for JavaScript/share button AKA install botnet-->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,26 +52,42 @@
     </nav>
 
 
-    <div class="jumbotron">
-      <h1 class="display-4">EL MURO!</h1>
-      <p class="lead"> Postaer loq que saea </p>
-      <hr class="my-4">
+    <div class="jumbotron ">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <h1 class="display-4 text-center">EL MURO!</h1>
+          <p class="lead text-center"> Postaer loq que saea </p>
+          <hr class="my-4">
+        </div>
 
-      <div class="col-lg-4">
-        <p>
-        </p>
-      <!--
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn my-2 my-sm-0" type="submit"> Confirm </button>
-        </form>
-      -->
+        <div class="col-lg-6">
+        <!--
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn my-2 my-sm-0" type="submit"> Confirm </button>
+          </form>
+        -->
 
-      {% block formBlock %}
-      {% endblock formBlock %}
+        {% block formBlock %}
+        {% endblock formBlock %}
 
+        </div>
       </div>
     </div>
+
+    <ul class="nav nav-tabs justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Popular</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Nuevo</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Top</a>
+      </li>
+    </ul>
+
+    <br>
 
     {% block content %}
     {% endblock content %}
