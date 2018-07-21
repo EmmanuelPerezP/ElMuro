@@ -8,6 +8,35 @@ from django.urls import reverse
 from django.shortcuts import render
 from principal.models import Post, Comment
 from .forms import CreatePost, CreateComment
+from .serializers import PostVotingSerializer
+
+from django.http import Http404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+
+class PostVote(APIView):
+    """
+    Vote on a post
+    """
+
+    def post(self, request, format=None):
+
+        serializer = PostVotingSerializer(data=request.data)
+        if serializer.is_valid():
+            # updating objects
+            # https://docs.djangoproject.com/en/2.0/ref/models/instances/#updating-attributes-based-on-existing-fields
+            post = Post.objects.get(pk=serializer.validated_data["postId"])
+            if serializer.validated_data["action"] == 1:
+                post.likes += 1
+            elif serializer.validated_data["action"] == -1:
+                post.likes -= 1
+            elif serializer.validated_data["action"] == 0:
+                post.likes -= 1
+            post.save()
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class PostListView(ListView):
