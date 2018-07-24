@@ -1,0 +1,3 @@
+add like rendering in detailview post
+add different sorting
+add reddit voting system
