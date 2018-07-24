@@ -29,11 +29,23 @@ class PostVote(APIView):
             # https://docs.djangoproject.com/en/2.0/ref/models/instances/#updating-attributes-based-on-existing-fields
             post = Post.objects.get(pk=serializer.validated_data["postId"])
             if serializer.validated_data["action"] == 1:
+                if 'posts_liked' in request.session:
+                    valores = request.session["posts_liked"]
+                    valores.append(serializer.validated_data["postId"])
+                    request.session["posts_liked"] = valores
+                else:
+                    request.session["posts_liked"] = [serializer.validated_data["postId"]]
                 post.likes += 1
             elif serializer.validated_data["action"] == -1:
+                valores = request.session["posts_liked"]
+                valores.remove(serializer.validated_data["postId"])
+                request.session["posts_liked"] = valores
                 post.likes -= 1
+                # request.session["posts-liked"].remove(serializer.validated_data["postId"])
             elif serializer.validated_data["action"] == 0:
                 post.likes -= 1
+            request.session.modified = True
+            request.session.save()
             post.save()
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -47,6 +59,10 @@ class PostListView(ListView):
         context = super().get_context_data(**kwargs)
         # we create the form and pass it to the rendering html
         context['form'] = CreatePost()
+        if 'posts_liked' in self.request.session:
+            context['posts_liked'] = self.request.session["posts_liked"]
+        else:
+            context['posts_liked'] = []
         return context
 
 

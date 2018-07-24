@@ -1,7 +1,9 @@
 {% extends "base_generic.html" %}
 
 {% block formBlock %}
-<div class="card w-100">
+{% comment %} this div is for the javascript to recognize the card {% endcomment %}
+<div id="cards">
+  <div class="card w-100" id="{{ post.pk }}">
   {% if post.hasImage %}
   <img class="card-img-top img-responsive" src="{{ post.image.url }}" alt="Card image cap">
   {% endif %}
@@ -30,6 +32,7 @@
     </div>
     {% comment %} <a href="#" class="btn btn-primary">like</a> {% endcomment %}
   </div>
+</div>
 </div>
 {% endblock formBlock %}
 

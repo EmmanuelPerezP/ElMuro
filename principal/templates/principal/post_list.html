@@ -26,12 +26,12 @@
 
 {% if post_list %}
 
-<div class="container-fluid">
+<div class="container-fluid" id="cards">
   <div class="row">
 
     <div class="card-columns">
       {% for post in post_list %}
-      <div class="card w-100">
+      <div class="card w-100" id="{{ post.pk }}">
         {% if post.hasImage %}
         <img class="card-img-top img-responsive" src="{{ post.image.url }}" alt="Card image cap">
         {% endif %}
@@ -41,7 +41,11 @@
         <div class="card-footer bg-transparent">
           <div class="row">
             <div class="col-1">
+              {% if post.pk in posts_liked %}
+              <i class="fas fa-heart like"></i>
+              {% else %}
               <i class="fas fa-heart"></i>
+              {% endif %}
             </div>
             <div class="col-3">
               <div class="like-counter">{{ post.likes }} likes</div>
