@@ -4,16 +4,16 @@ import math
 
 def maximalValue(upvotes, downvotes):
     score = upvotes - downvotes
-    z = max(abs(score),1) 
+    z = max(abs(score), 1)
     return z
 
 
 def score(ups, downs):
-    return upr - downs
+    return ups - downs
 
 
 def epoch_seconds(x):
-    fecha2 = datetime.datetime(1970,1,1)
+    fecha2 = datetime.datetime(1970, 1, 1)
     diff = x-fecha2
     return diff.total_seconds()
 
@@ -21,7 +21,7 @@ def epoch_seconds(x):
 def hot(ups, downs, date):
     s = score(ups, downs)
     t = epoch_seconds(date)
-    order = math.log10(max(abs(s),1))
+    order = math.log10(max(abs(s), 1))
     sign = 1 if s > 0 else -1 if s < 0 else 0
     # 134028003 is the Unix timestamp for the oldest submission, so it basically makes the math easier since nothing can be older than that.
     seconds = t - 1134028003
@@ -40,4 +40,3 @@ print(hot(30, 0, datetime.datetime.now()))
 print(hot(100, 0, datetime.datetime.now()))
 print(hot(1000, 0, datetime.datetime.now()))
 print(hot(3000, 0, datetime.datetime.now()))
-

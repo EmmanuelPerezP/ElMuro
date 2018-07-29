@@ -11,15 +11,39 @@
 {% block content %}
 
 <ul class="nav nav-tabs justify-content-center">
+  {% if sort == "popular" %}
   <li class="nav-item">
-    <a class="nav-link active" href="#">Popular</a>
+    <a class="nav-link active" href="/popular">Popular</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Nuevo</a>
+    <a class="nav-link" href="/nuevo">Nuevo</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Top</a>
+    <a class="nav-link" href="/top">Top</a>
   </li>
+  {% endif %}
+  {% if sort == "nuevo" %}
+  <li class="nav-item">
+    <a class="nav-link " href="/popular">Popular</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/nuevo">Nuevo</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/top">Top</a>
+  </li>
+  {% endif %}
+  {% if sort == "top" %}
+  <li class="nav-item">
+    <a class="nav-link " href="/popular">Popular</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/nuevo">Nuevo</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/top">Top</a>
+  </li>
+  {% endif %}
 </ul>
 
 <br>

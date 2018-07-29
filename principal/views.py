@@ -15,9 +15,16 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+import datetime
+import math
+
+
+def score(ups, downs):
+    return ups - downs
+
 
 def epoch_seconds(x):
-    fecha2 = datetime.datetime(1970,1,1)
+    fecha2 = datetime.datetime(1970, 1, 1)
     diff = x-fecha2
     return diff.total_seconds()
 
@@ -25,7 +32,7 @@ def epoch_seconds(x):
 def hot(ups, downs, date):
     s = score(ups, downs)
     t = epoch_seconds(date)
-    order = math.log10(max(abs(s),1))
+    order = math.log10(max(abs(s), 1))
     sign = 1 if s > 0 else -1 if s < 0 else 0
     # 134028003 is the Unix timestamp for the oldest submission, so it basically makes the math easier since nothing can be older than that.
     seconds = t - 1134028003
@@ -41,6 +48,7 @@ class PostVote(APIView):
     def post(self, request, format=None):
 
         serializer = PostVotingSerializer(data=request.data)
+        dateNow = datetime.datetime.now()
         if serializer.is_valid():
             # updating objects
             # https://docs.djangoproject.com/en/2.0/ref/models/instances/#updating-attributes-based-on-existing-fields
@@ -53,15 +61,24 @@ class PostVote(APIView):
                 else:
                     request.session["posts_liked"] = [serializer.validated_data["postId"]]
                 post.likes += 1
+                post.score += hot(post.likes, post.dislike, dateNow)
             elif serializer.validated_data["action"] == -1:
                 valores = request.session["posts_liked"]
                 valores.remove(serializer.validated_data["postId"])
                 request.session["posts_liked"] = valores
                 # post.likes -= 1
-                post.dislikes += 1
+                post.dislike += 1
+                post.score -= hot(post.likes, post.dislike, dateNow)
                 # request.session["posts-liked"].remove(serializer.validated_data["postId"])
-            elif serializer.validated_data["action"] == 0:
+            # unlike
+            elif serializer.validated_data["action"] == 2:
                 post.likes -= 1
+                post.score -= hot(post.likes, post.dislike, dateNow)
+            # undislike
+            elif serializer.validated_data["action"] == -2:
+                post.dislike -= 1
+                post.score += hot(post.likes, post.dislike, dateNow)
+
             request.session.modified = True
             request.session.save()
             post.save()
@@ -72,16 +89,30 @@ class PostVote(APIView):
 class PostListView(ListView):
 
     model = Post
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # we create the form and pass it to the rendering html
         context['form'] = CreatePost()
+        context['sort'] = self.kwargs['sort']
         if 'posts_liked' in self.request.session:
             context['posts_liked'] = self.request.session["posts_liked"]
         else:
             context['posts_liked'] = []
         return context
+    
+    def get_queryset(self, *args, **kwargs):
+        if self.kwargs['sort'] == "top":
+            return Post.objects.all().order_by('-likes')
+        elif self.kwargs['sort'] == "nuevo":
+            return Post.objects.all().order_by('-dateCreated')
+        elif self.kwargs['sort'] == "popular":
+            return Post.objects.all().order_by('-score')
+    
+
+
+
 
 
 class ListFormView(FormView):

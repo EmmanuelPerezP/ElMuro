@@ -17,6 +17,7 @@ class Post(models.Model):
     dateCreated = models.DateTimeField(auto_now_add=True)
     likes = models.BigIntegerField(default=0)
     dislike = models.BigIntegerField(default=0)
+    score = models.IntegerField(default=0)
     postText = models.CharField(max_length=10000)
 
     def __str__(self):
