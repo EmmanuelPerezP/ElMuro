@@ -57,7 +57,8 @@ class PostVote(APIView):
                 valores = request.session["posts_liked"]
                 valores.remove(serializer.validated_data["postId"])
                 request.session["posts_liked"] = valores
-                post.likes -= 1
+                # post.likes -= 1
+                post.dislikes += 1
                 # request.session["posts-liked"].remove(serializer.validated_data["postId"])
             elif serializer.validated_data["action"] == 0:
                 post.likes -= 1

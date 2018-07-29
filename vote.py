@@ -1,11 +1,6 @@
 import datetime
 import math
 
-def epoch_seconds(x):
-    fecha2 = datetime.datetime(1970,1,1)
-    diff = x-fecha2
-    return diff.total_seconds()
-
 
 def maximalValue(upvotes, downvotes):
     score = upvotes - downvotes
@@ -14,7 +9,13 @@ def maximalValue(upvotes, downvotes):
 
 
 def score(ups, downs):
-    return ups - downs
+    return upr - downs
+
+
+def epoch_seconds(x):
+    fecha2 = datetime.datetime(1970,1,1)
+    diff = x-fecha2
+    return diff.total_seconds()
 
 
 def hot(ups, downs, date):

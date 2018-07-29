@@ -16,6 +16,7 @@ class Post(models.Model):
     image = models.ImageField(default=None, blank=True, upload_to=directory_path_images)
     dateCreated = models.DateTimeField(auto_now_add=True)
     likes = models.BigIntegerField(default=0)
+    dislike = models.BigIntegerField(default=0)
     postText = models.CharField(max_length=10000)
 
     def __str__(self):
