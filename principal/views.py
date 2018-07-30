@@ -3,6 +3,7 @@ from django.views import generic, View
 from django.views.generic.edit import SingleObjectMixin, FormView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.base import RedirectView
 
 from django.urls import reverse
 from django.shortcuts import render
@@ -42,7 +43,7 @@ def hot(ups, downs, date):
 
 class PostVote(APIView):
     """
-    Vote on a post
+    Vote on a post via AJAX/Restful
     """
 
     def post(self, request, format=None):
@@ -87,6 +88,10 @@ class PostVote(APIView):
 
 
 class PostListView(ListView):
+    """
+    Part of IndexView with ListFormView, lists the posts according the sort order
+    takes parameter sort: top, nuevo, popular
+    """
 
     model = Post
     paginate_by = 10
@@ -101,7 +106,7 @@ class PostListView(ListView):
         else:
             context['posts_liked'] = []
         return context
-    
+
     def get_queryset(self, *args, **kwargs):
         if self.kwargs['sort'] == "top":
             return Post.objects.all().order_by('-likes')
@@ -109,10 +114,6 @@ class PostListView(ListView):
             return Post.objects.all().order_by('-dateCreated')
         elif self.kwargs['sort'] == "popular":
             return Post.objects.all().order_by('-score')
-    
-
-
-
 
 
 class ListFormView(FormView):
@@ -125,7 +126,7 @@ class ListFormView(FormView):
         return super().post(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('index')
+        return reverse('index-root-redirect')
 
     def form_valid(self, form):
         print(form.cleaned_data['image'])
@@ -137,6 +138,9 @@ class ListFormView(FormView):
 
 
 class Index(View):
+    """
+    Front page view, a combination of ListFormView and PostListView
+    """
 
     def get(self, request, *args, **kwargs):
         view = PostListView.as_view()
@@ -149,6 +153,9 @@ class Index(View):
 
 # Post Detail View with comment form
 class CommentFormView(SingleObjectMixin, FormView):
+    """
+    Part of the combination with PostDetailView in PostDetailForm
+    """
 
     template_name = "principal/post_detail.html"
     form_class = CreateComment
@@ -169,6 +176,9 @@ class CommentFormView(SingleObjectMixin, FormView):
 
 
 class PostDetailView(DetailView):
+    """
+    Part of the combination with CommentFormView in PostDetailForm
+    """
 
     model = Post
 
@@ -182,6 +192,9 @@ class PostDetailView(DetailView):
 
 
 class PostDetailForm(View):
+    """
+    PostDetailView and CommentFormView combined
+    """
 
     def get(self, request, *args, **kwargs):
         view = PostDetailView.as_view()
@@ -190,3 +203,17 @@ class PostDetailForm(View):
     def post(self, request, *args, **kwargs):
         view = CommentFormView.as_view()
         return view(request, *args, **kwargs)
+
+
+class IndexRootRedirectView(RedirectView):
+    """
+    After posting a post redirect the view to top-new-popular
+    check urls.py
+    """
+
+    permanent = True
+    query_string = True
+    pattern_name = 'index'
+
+    # def get_redirect_url(self, *args, **kwargs):
+    #     return super().get_redirect_url(*args, **kwargs)

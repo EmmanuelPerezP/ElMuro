@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 urlpatterns = [
+    path('', views.IndexRootRedirectView.as_view(url='popular/'), name='index-root-redirect'),
     path('<str:sort>/', views.Index.as_view(), name='index'),
     path('post/<int:pk>/', views.PostDetailForm.as_view(), name='post-detail'),
     path('post/vote/', views.PostVote.as_view(), name='post-vote'),
