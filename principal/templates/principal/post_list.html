@@ -1,5 +1,13 @@
 {% extends "base_generic.html" %}
 
+{% block generatedStyle %}
+<style>
+  .jumbotron {
+      background: url("{{ imageUrl.image.url }}");
+  }
+</style>
+{% endblock generatedStyle %}
+
 {% block formBlock %}
     <form enctype="multipart/form-data" method="post" action="">
       {% csrf_token %}

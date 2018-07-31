@@ -1,5 +1,13 @@
 {% extends "base_generic.html" %}
 
+{% block generatedStyle %}
+<style>
+  .jumbotron {
+      background: url("{{ imageUrl.image.url }}");
+  }
+</style>
+{% endblock generatedStyle %}
+
 {% block formBlock %}
 {% comment %} this div is for the javascript to recognize the card {% endcomment %}
 <div id="cards">
@@ -13,7 +21,11 @@
   <div class="card-footer bg-transparent">
     <div class="row">
       <div class="col-1">
+        {% if post.pk in posts_liked %}
+        <i class="fas fa-heart like"></i>
+        {% else %}
         <i class="fas fa-heart"></i>
+        {% endif %}
       </div>
       <div class="col-3">
         <div class="like-counter">{{ post.likes }} likes</div>
@@ -56,22 +68,26 @@
   {% if comment_list %}
 
   <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-8" id="comments">
 
       {% for comment in comment_list %}
 
       <div class="row">
-      <div class="card w-100">
+      <div class="card w-100" id="{{ comment.pk }}">
         <div class="card-body">
           <p class="card-text">{{ comment.commentText }}</p>
         </div>
         <div class="card-footer bg-transparent">
           <div class="row">
             <div class="col-1">
-              <i class="fas fa-heart"></i>
+            {% if comment.pk in comments_liked %}
+            <i class="fas fa-heart like"></i>
+            {% else %}
+            <i class="fas fa-heart"></i>
+            {% endif %}
             </div>
             <div class="col-3">
-              <div class="like-counter">1883 likes</div>
+              <div class="like-counter">{{ comment.likes }} likes</div>
             </div>
 
           </div>

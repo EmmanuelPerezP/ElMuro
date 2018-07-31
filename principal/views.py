@@ -7,9 +7,9 @@ from django.views.generic.base import RedirectView
 
 from django.urls import reverse
 from django.shortcuts import render
-from principal.models import Post, Comment
+from principal.models import Post, Comment, HeaderImage
 from .forms import CreatePost, CreateComment
-from .serializers import PostVotingSerializer
+from .serializers import VotingSerializer
 
 from django.http import Http404
 from rest_framework.views import APIView
@@ -18,6 +18,7 @@ from rest_framework import status
 
 import datetime
 import math
+import random
 
 
 def score(ups, downs):
@@ -48,7 +49,7 @@ class PostVote(APIView):
 
     def post(self, request, format=None):
 
-        serializer = PostVotingSerializer(data=request.data)
+        serializer = VotingSerializer(data=request.data)
         dateNow = datetime.datetime.now()
         if serializer.is_valid():
             # updating objects
@@ -87,6 +88,53 @@ class PostVote(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class CommentVote(APIView):
+    """
+    Vote on a comment via AJAX/Restful
+    """
+
+    def post(self, request, format=None):
+
+        serializer = VotingSerializer(data=request.data)
+        dateNow = datetime.datetime.now()
+        if serializer.is_valid():
+            # updating objects
+            # https://docs.djangoproject.com/en/2.0/ref/models/instances/#updating-attributes-based-on-existing-fields
+            # using post varialbe too lazy to change it to comment hehe
+            post = Comment.objects.get(pk=serializer.validated_data["postId"])
+            if serializer.validated_data["action"] == 1:
+                if 'posts_liked' in request.session:
+                    valores = request.session["comments_liked"]
+                    valores.append(serializer.validated_data["postId"])
+                    request.session["comments_liked"] = valores
+                else:
+                    request.session["comments_liked"] = [serializer.validated_data["postId"]]
+                post.likes += 1
+                post.score += hot(post.likes, post.dislike, dateNow)
+            elif serializer.validated_data["action"] == -1:
+                valores = request.session["comments_liked"]
+                valores.remove(serializer.validated_data["postId"])
+                request.session["comments_liked"] = valores
+                # post.likes -= 1
+                post.dislike += 1
+                post.score -= hot(post.likes, post.dislike, dateNow)
+                # request.session["posts-liked"].remove(serializer.validated_data["postId"])
+            # unlike
+            elif serializer.validated_data["action"] == 2:
+                post.likes -= 1
+                post.score -= hot(post.likes, post.dislike, dateNow)
+            # undislike
+            elif serializer.validated_data["action"] == -2:
+                post.dislike -= 1
+                post.score += hot(post.likes, post.dislike, dateNow)
+
+            request.session.modified = True
+            request.session.save()
+            post.save()
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class PostListView(ListView):
     """
     Part of IndexView with ListFormView, lists the posts according the sort order
@@ -101,6 +149,9 @@ class PostListView(ListView):
         # we create the form and pass it to the rendering html
         context['form'] = CreatePost()
         context['sort'] = self.kwargs['sort']
+        items = HeaderImage.objects.all()
+        random_image = random.choice(items)
+        context['imageUrl'] = random_image
         if 'posts_liked' in self.request.session:
             context['posts_liked'] = self.request.session["posts_liked"]
         else:
@@ -112,7 +163,8 @@ class PostListView(ListView):
             return Post.objects.all().order_by('-likes')
         elif self.kwargs['sort'] == "nuevo":
             return Post.objects.all().order_by('-dateCreated')
-        elif self.kwargs['sort'] == "popular":
+        else:
+            # if self.kwargs['sort'] == "popular"
             return Post.objects.all().order_by('-score')
 
 
@@ -187,7 +239,19 @@ class PostDetailView(DetailView):
         # we create the form and pass it to the rendering html
         # self.object = self.get_object()
         context['comment_list'] = Comment.objects.filter(post=self.object.pk)
-        context['form'] = CreateComment()
+        context['form'] = CreateComment() 
+        items = HeaderImage.objects.all()
+        random_image = random.choice(items)
+        context['imageUrl'] = random_image
+        if 'posts_liked' in self.request.session:
+            context['posts_liked'] = self.request.session["posts_liked"]
+        else:
+            context['posts_liked'] = []
+        
+        if 'comments_liked' in self.request.session:
+            context['comments_liked'] = self.request.session["comments_liked"]
+        else:
+            context['comments_liked'] = []
         return context
 
 

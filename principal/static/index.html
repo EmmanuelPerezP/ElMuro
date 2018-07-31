@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,6 +13,12 @@
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
+    
+<style>
+  .jumbotron {
+      background: url("http://127.0.0.1:8000/media/None1517288445238.jpg");
+  }
+</style>
 
 
   </head>
@@ -30,45 +37,63 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="/">EL MURO</a>
+      <a class="navbar-brand" href="/nuevo">EL MURO</a>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
+          
         </ul>
       </div>
     </nav>
 
 
-    <div class="jumbotron ">
-      <div class="row justify-content-center">
-        <div class="col-12">
-          <h1 class="display-4 text-center">EL MURO!</h1>
+    <div class="jumbotron">
+      <div class="row justify-content-center jumbo">
+        <div class="col-lg-6 col-12 blank">
+          <h1 class="text-center">EL MURO!</h1>
           <p class="lead text-center"> Postaer loq que saea </p>
+        </div>
+        <div class="col-12">
           <hr class="my-4">
         </div>
+        
 
-        <div class="col-lg-6">
-        <!--
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn my-2 my-sm-0" type="submit"> Confirm </button>
-          </form>
-        -->
+        <div class="col-lg-6 blank p-3">
 
         
-    <form enctype="multipart/form-data" method="post" action="">
-      <input type="hidden" name="csrfmiddlewaretoken" value="0pZrnntfIO5SNGyeFdFFfNhNeX2dOdYQCFuBkk4U5xPFJy5VsAeKqbv0rzWNrJFy">
-      <p><label for="id_image">Image:</label> <input type="file" name="image" id="id_image"></p>
-<p><label for="id_message">Mensaje o shitpost:</label> <textarea name="message" cols="40" rows="3" class="form-control" required="" id="id_message">
-</textarea></p>
-      <button type="submit" class="btn btn-primary">Enviar</button>
-    </form>
+
+<div id="cards">
+  <div class="card w-100" id="50">
+  
+  <img class="card-img-top img-responsive" src="http://127.0.0.1:8000/media/None1457187211926.jpg" alt="Card image cap">
+  
+  <div class="card-body">
+    <p class="card-text">lilion</p>
+  </div>
+  <div class="card-footer bg-transparent">
+    <div class="row">
+      <div class="col-1">
+        <i class="fas fa-heart"></i>
+      </div>
+      <div class="col-3">
+        <div class="like-counter">1 likes</div>
+      </div>
+      
+      <div class="col-5 mt-1 text-right">
+        <a href="/post/50/">Comentarios</a>
+      </div>
+      <!-- Your share button code -->
+      <div class="col-2">
+        <div class="fb-share-button" 
+          data-href="https://www.your-domain.com/your-page.html" 
+          data-layout="button">
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+</div>
 
 
         </div>
@@ -79,62 +104,30 @@
 
     
 
-<ul class="nav nav-tabs justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link active" href="#">Popular</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Nuevo</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Top</a>
-  </li>
-</ul>
+<div class="container">
 
-<br>
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <form method="post" action="">
+        <input type='hidden' name='csrfmiddlewaretoken' value='p8wrebEJxOo7tBOpwQfXSAKDRFiotFzkeGBWISormWqtcPCOZGGxJsyWpaTHuChP' />
+        <p><label for="id_message">Comentario:</label> <textarea name="message" cols="40" rows="3" class="form-control" required id="id_message">
+</textarea></p>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+    </div>
+  </div>
 
+  <br>
 
+  
 
-<div class="container-fluid" id="cards">
-  <div class="row">
+  <div class="row justify-content-center">
+    <div class="col-8" id="comments">
 
-    <div class="card-columns">
-      
-      <div class="card w-100" id="20">
-        
-        <img class="card-img-top img-responsive" src="http://127.0.0.1:8000/media/None1507698327645.jpg" alt="Card image cap">
-        
+      <div class="row">
+      <div class="card w-100" id="1">
         <div class="card-body">
-          <p class="card-text">feel</p>
-        </div>
-        <div class="card-footer bg-transparent">
-          <div class="row">
-            <div class="col-2">
-              <i class="fas fa-heart like"></i>
-            </div>
-            <div class="col-3">
-              <div class="like-counter">2 likes</div>
-            </div>
-            
-            <div class="col-5 mt-1 text-right">
-              <a href="/post/20/">Comentarios</a>
-            </div>
-            <!-- Your share button code -->
-            <div class="col-2">
-              <div class="fb-share-button" data-href="/post/20/" data-layout="button">
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="card w-100" id="36">
-        
-        <img class="card-img-top img-responsive" src="http://127.0.0.1:8000/media/Nonetenor_2.gif" alt="Card image cap">
-        
-        <div class="card-body">
-          <p class="card-text">lewd</p>
+          <p class="card-text">que carajo es esto</p>
         </div>
         <div class="card-footer bg-transparent">
           <div class="row">
@@ -142,83 +135,17 @@
               <i class="fas fa-heart"></i>
             </div>
             <div class="col-3">
-              <div class="like-counter">0 likes</div>
-            </div>
-            
-            <div class="col-5 mt-1 text-right">
-              <a href="/post/36/">Comentarios</a>
-            </div>
-            <!-- Your share button code -->
-            <div class="col-2">
-              <div class="fb-share-button" data-href="/post/36/" data-layout="button">
-              </div>
+              <div class="like-counter">1883 likes</div>
             </div>
           </div>
-          
         </div>
+      </div>
       </div>
       
-      <div class="card w-100">
-        
-        <img class="card-img-top img-responsive" src="http://127.0.0.1:8000/media/None1500399533773.jpg" alt="Card image cap">
-        
-        <div class="card-body">
-          <p class="card-text">:D</p>
-        </div>
-        <div class="card-footer bg-transparent">
-          <div class="row">
-            <div class="col-1">
-              <i class="fas fa-heart"></i>
-            </div>
-            <div class="col-3">
-              <div class="like-counter">0 likes</div>
-            </div>
-            
-            <div class="col-5 mt-1 text-right">
-              <a href="/post/37/">Comentarios</a>
-            </div>
-            <!-- Your share button code -->
-            <div class="col-2">
-              <div class="fb-share-button" data-href="/post/37/" data-layout="button">
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="card w-100">
-        
-        <img class="card-img-top img-responsive" src="https://i.imgur.com/FTBSFo7.jpg" alt="Card image cap">
-        
-        <div class="card-body">
-          <p class="card-text">:D</p>
-        </div>
-        <div class="card-footer bg-transparent">
-          <div class="row">
-            <div class="col-1">
-              <i class="fas fa-heart"></i>
-            </div>
-            <div class="col-3">
-              <div class="like-counter">0 likes</div>
-            </div>
-            
-            <div class="col-5 mt-1 text-right">
-              <a href="/post/37/">Comentarios</a>
-            </div>
-            <!-- Your share button code -->
-            <div class="col-2">
-              <div class="fb-share-button" data-href="/post/37/" data-layout="button">
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-
     </div>
   </div>
 </div>
+
 
 
 

@@ -37,10 +37,12 @@ class Comment(models.Model):
     """
     Clase que asociada a un Post
     """
-    likes = models.BigIntegerField(default=0)
     dateCreated = models.DateTimeField(auto_now_add=True)
-    commentText = models.CharField(max_length=10000)
+    likes = models.BigIntegerField(default=0)
+    dislike = models.BigIntegerField(default=0)
+    score = models.IntegerField(default=0)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    commentText = models.CharField(max_length=10000)
 
     def __str__(self):
         """
@@ -48,3 +50,16 @@ class Comment(models.Model):
         """
         return self.commentText
 
+
+class HeaderImage(models.Model):
+    """
+    Modelo de cada header image
+    """
+    image = models.ImageField(default=None, upload_to=directory_path_images)
+    dateCreated = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        """
+        String representing the model
+        """
+        return str(self.id)

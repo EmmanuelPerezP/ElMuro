@@ -12,7 +12,8 @@
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
-
+    {% block generatedStyle %}
+    {% endblock generatedStyle %}
 
   </head>
   <body>
@@ -34,12 +35,12 @@
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
+          {% comment %} <li class="nav-item active">
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
-          </li>
+          </li> {% endcomment %}
         </ul>
       </div>
     </nav>
@@ -48,7 +49,7 @@
     <div class="jumbotron">
       <div class="row justify-content-center jumbo">
         <div class="col-lg-6 col-12 blank">
-          <h1 class="display-4 text-center">EL MURO!</h1>
+          <h1 class="text-center">EL MURO!</h1>
           <p class="lead text-center"> Postaer loq que saea </p>
         </div>
         <div class="col-12">

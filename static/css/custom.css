@@ -47,10 +47,21 @@ i {
     margin-left: 10px;
 }
 
-.jumbotron {
-    background: url(https://orig00.deviantart.net/2eb6/f/2015/295/a/0/rare_pepe_mosaic__not_for_normies_by_mustacheese-d9e1zzz.png);
+
+.blank {
+    background: #ffffffb0;
 }
 
-.jumbo {
-    background: #ffffffb0;
+h1 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.lead {
+    font-weight: 400;
+}
+
+.bg-dark {
+    background-color: black!important
 }
