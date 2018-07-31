@@ -1,15 +1,13 @@
 
 function likeDislike(e) {
-  console.log(e);
   if(e.target && !e.target.classList.contains('like') && e.target.classList.contains('fa-heart')) {
     // List item found!  Output the ID!
     // in this case we could use this function 
     // https://gomakethings.com/climbing-up-and-down-the-dom-tree-with-vanilla-javascript/#getting-the-first-match-up-the-tree
     // that is equivalent to $.closest(), but its more readible this way
     var idOfPost = e.target.parentElement.parentElement.parentElement.parentElement.id;
-    console.log(idOfPost);
 
-    fetch("http://127.0.0.1:8000/post/vote/",{
+    fetch("/post/vote/",{
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -36,9 +34,8 @@ function likeDislike(e) {
     // https://gomakethings.com/climbing-up-and-down-the-dom-tree-with-vanilla-javascript/#getting-the-first-match-up-the-tree
     // that is equivalent to $.closest(), but its more readible this way
     var idOfPost = e.target.parentElement.parentElement.parentElement.parentElement.id;
-    console.log(idOfPost);
 
-    fetch("http://127.0.0.1:8000/post/vote/",{
+    fetch("/post/vote/",{
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -60,16 +57,14 @@ function likeDislike(e) {
 }   
 
 function likeDislikeComment(e) {
-  console.log(e);
   if(e.target && !e.target.classList.contains('like') && e.target.classList.contains('fa-heart')) {
     // List item found!  Output the ID!
     // in this case we could use this function 
     // https://gomakethings.com/climbing-up-and-down-the-dom-tree-with-vanilla-javascript/#getting-the-first-match-up-the-tree
     // that is equivalent to $.closest(), but its more readible this way
     var idOfPost = e.target.parentElement.parentElement.parentElement.parentElement.id;
-    console.log(idOfPost);
 
-    fetch("http://127.0.0.1:8000/comment/vote/",{
+    fetch("/comment/vote/",{
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -96,9 +91,8 @@ function likeDislikeComment(e) {
     // https://gomakethings.com/climbing-up-and-down-the-dom-tree-with-vanilla-javascript/#getting-the-first-match-up-the-tree
     // that is equivalent to $.closest(), but its more readible this way
     var idOfPost = e.target.parentElement.parentElement.parentElement.parentElement.id;
-    console.log(idOfPost);
 
-    fetch("http://127.0.0.1:8000/comment/vote/",{
+    fetch("/comment/vote/",{
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'

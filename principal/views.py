@@ -1,24 +1,22 @@
-from django.views import generic, View
-# Generic Views
-from django.views.generic.edit import SingleObjectMixin, FormView
-from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.base import RedirectView
-
-from django.urls import reverse
-from django.shortcuts import render
-from principal.models import Post, Comment, HeaderImage
-from .forms import CreatePost, CreateComment
-from .serializers import VotingSerializer
-
-from django.http import Http404
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-
 import datetime
 import math
 import random
+
+from django.urls import reverse
+from django.views import View
+from django.views.generic.base import RedirectView
+from django.views.generic.detail import DetailView
+# Generic Views
+from django.views.generic.edit import FormView, SingleObjectMixin
+from django.views.generic.list import ListView
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from principal.models import Comment, HeaderImage, Post
+
+from .forms import CreateComment, CreatePost
+from .serializers import VotingSerializer
 
 
 def score(ups, downs):
