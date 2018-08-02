@@ -65,3 +65,10 @@ h1 {
 .bg-dark {
     background-color: black!important
 }
+
+#footer {
+    background: #000;
+    padding: 0 0 30px 0;
+    color: #eee;
+    font-size: 14px;
+}

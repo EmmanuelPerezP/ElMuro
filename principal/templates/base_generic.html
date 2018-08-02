@@ -2,11 +2,22 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Comparador Horarios</title>
+    <title>El Muro!, MEMesS aNoNOnoimos</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
+    <meta name="description" content="Postear cualquier contenido, memes, estupideces, 
+    todo es totalmente anonimo, solo ud va a saber quien subio lo que ud subio">
+
+    {% block opengraph %}
+    <meta property="og:url"                content="https://www.elmuro.pw/" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title"              content="El Muro! | contenido, memes, estupideces, todo es totalmente anonimo"/>
+    <meta property="og:description"        content="Postear cualquier contenido, memes, estupideces, todo es totalmente anonimo, solo ud va a saber quien subio lo que ud subio" />
+    <meta property="og:image"              content="" />
+    {% endblock opengraph %}
 
     {% load static %}
     <link rel="apple-touch-icon" sizes="57x57" href="{% static 'icons/apple-icon-57x57.png' %}">
@@ -48,9 +59,6 @@
     }(document, 'script', 'facebook-jssdk'));</script>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
       <a class="navbar-brand" href="/nuevo">EL MURO</a>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -82,9 +90,34 @@
     </div>
 
 
-
     {% block content %}
     {% endblock content %}
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <ul class="list-inline text-center">
+              <li class="list-inline-item">
+                <a href="#">
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.caquita.party">
+                  <p> Caquita </p>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                </a>
+              </li>
+            </ul>
+            {% comment %} <p class="copyright text-muted">Copyright &copy; Your Website 2018</p> {% endcomment %}
+          </div>
+        </div>
+      </div>
+    </footer>
 
     {% load static %}
     <script src="{% static './main.js' %}"></script>

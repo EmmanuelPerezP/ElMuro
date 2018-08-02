@@ -6,6 +6,8 @@ __pycache__/
 # django stuff
 *.log
 *.pot
+media/*
+db.sqlite3
 
 env/
 eb-virt/

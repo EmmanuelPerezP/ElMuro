@@ -8,43 +8,52 @@
 </style>
 {% endblock generatedStyle %}
 
+{% block opengraph %}
+<meta property="og:url"                content="https://www.elmuro.pw{{ post.get_absolute_url }}" />
+<meta property="og:type"               content="website" />
+<meta property="og:title"              content="El Muro! | {{ post.postText }}"/>
+<meta property="og:description"        content="Postear cualquier contenido, memes, estupideces, todo es totalmente anonimo, solo ud va a saber quien subio lo que ud subio" />
+{% if post.hasImage %}
+<meta property="og:image"              content="https://www.elmuro.pw{{ post.image.url }}" />
+{% endif %}
+{% endblock opengraph %}
+
+
 {% block formBlock %}
 {% comment %} this div is for the javascript to recognize the card {% endcomment %}
 <div id="cards">
   <div class="card w-100" id="{{ post.pk }}">
-  {% if post.hasImage %}
-  <img class="card-img-top img-responsive" src="{{ post.image.url }}" alt="Card image cap">
-  {% endif %}
-  <div class="card-body">
-    <p class="card-text">{{ post.postText }}</p>
-  </div>
-  <div class="card-footer bg-transparent">
-    <div class="row">
-      <div class="col-1">
-        {% if post.pk in posts_liked %}
-        <i class="fas fa-heart like"></i>
-        {% else %}
-        <i class="fas fa-heart"></i>
-        {% endif %}
-      </div>
-      <div class="col-3">
-        <div class="like-counter">{{ post.likes }} likes</div>
-      </div>
-      
-      <div class="col-5 mt-1 text-right">
-        <a href="{{ post.get_absolute_url }}">Comentarios</a>
-      </div>
-      <!-- Your share button code -->
-      <div class="col-2">
-        <div class="fb-share-button" 
-          data-href="https://www.your-domain.com/your-page.html" 
-          data-layout="button">
+    {% if post.hasImage %}
+    <img class="card-img-top img-responsive" src="{{ post.image.url }}" alt="Card image cap">
+    {% endif %}
+    <div class="card-body">
+      <p class="card-text">{{ post.postText }}</p>
+    </div>
+    <div class="card-footer bg-transparent">
+      <div class="row">
+        <div class="col-1">
+          {% if post.pk in posts_liked %}
+          <i class="fas fa-heart like"></i>
+          {% else %}
+          <i class="fas fa-heart"></i>
+          {% endif %}
+        </div>
+        <div class="col-3">
+          <div class="like-counter">{{ post.likes }} likes</div>
+        </div>
+        <div class="col-5 mt-1 text-right">
+          <a href="{{ post.get_absolute_url }}">Comentarios</a>
+        </div>
+        <!-- Your share button code -->
+        <div class="col-2">
+          <div class="fb-share-button" 
+            data-href="https://www.your-domain.com/your-page.html" 
+            data-layout="button">
+          </div>
         </div>
       </div>
     </div>
-    {% comment %} <a href="#" class="btn btn-primary">like</a> {% endcomment %}
   </div>
-</div>
 </div>
 {% endblock formBlock %}
 
@@ -65,45 +74,52 @@
 
   <br>
 
-  {% if comment_list %}
 
   <div class="row justify-content-center">
     <div class="col-8" id="comments">
+    {% if comment_list %}
 
       {% for comment in comment_list %}
 
       <div class="row">
-      <div class="card w-100 mb-3" id="{{ comment.pk }}">
-        <div class="card-body">
-          <p class="card-text">{{ comment.commentText }}</p>
-        </div>
-        <div class="card-footer bg-transparent">
-          <div class="row">
-            <div class="col-1">
-            {% if comment.pk in comments_liked %}
-            <i class="fas fa-heart like"></i>
-            {% else %}
-            <i class="fas fa-heart"></i>
-            {% endif %}
-            </div>
-            <div class="col-3">
-              <div class="like-counter">{{ comment.likes }} likes</div>
-            </div>
-
+        <div class="card w-100 mb-3" id="{{ comment.pk }}">
+          <div class="card-body">
+            <p class="card-text">{{ comment.commentText }}</p>
           </div>
-          {% comment %} <a href="#" class="btn btn-primary">like</a> {% endcomment %}
+          <div class="card-footer bg-transparent">
+            <div class="row">
+              <div class="col-1">
+              {% if comment.pk in comments_liked %}
+              <i class="fas fa-heart like"></i>
+              {% else %}
+              <i class="fas fa-heart"></i>
+              {% endif %}
+              </div>
+              <div class="col-3">
+                <div class="like-counter">{{ comment.likes }} likes</div>
+              </div>
+
+            </div>
+          </div>
         </div>
-        </div>
-        </div>
-      {% comment %} </div> {% endcomment %}
+      </div>
       {% endfor %}
+
+    {% else %}
+      <div class="row">
+        <div class="col-6">
+          <a>No hay comentarios</a>
+       </div>
+        <div class="col-12">
+          <br class="my-5">
+        </div>
+      </div>
+
+    {% endif %}
+
     </div>
   </div>
 </div>
 
-{% else %}
-<a>No hay comentarios</a>
-
-{% endif %}
 
 {% endblock content %}

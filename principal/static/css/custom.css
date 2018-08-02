@@ -65,3 +65,22 @@ h1 {
 .bg-dark {
     background-color: black!important
 }
+
+footer {
+    background: #000;
+    padding: 2rem;
+    color: #eee;
+    font-size: 14px;
+}
+
+footer a {
+    color:white;
+}
+
+.footer-top{
+    padding: 60px 0 30px 0;
+}
+
+.card-text {
+    font-size: 2rem;
+}
