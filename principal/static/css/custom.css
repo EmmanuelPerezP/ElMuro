@@ -84,3 +84,7 @@ footer a {
 .card-text {
     font-size: 2rem;
 }
+
+.jumbotron {
+    border-radius: 0rem;
+}
