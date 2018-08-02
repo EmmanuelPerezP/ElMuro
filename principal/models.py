@@ -32,6 +32,9 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post-detail', args=[self.pk])
 
+    def get_score(self):
+        return self.likes - self.dislike
+
 
 class Comment(models.Model):
     """
@@ -49,6 +52,9 @@ class Comment(models.Model):
         String representing the model
         """
         return self.commentText
+
+    def get_score(self):
+        return self.likes - self.dislike
 
 
 class HeaderImage(models.Model):
