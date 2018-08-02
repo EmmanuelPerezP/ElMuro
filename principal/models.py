@@ -19,6 +19,7 @@ class Post(models.Model):
     dislike = models.BigIntegerField(default=0)
     score = models.IntegerField(default=0)
     postText = models.CharField(max_length=10000)
+    commentCounter = models.IntegerField(default=0)
 
     def __str__(self):
         """

@@ -221,6 +221,8 @@ class CommentFormView(SingleObjectMixin, FormView):
         self.object = self.get_object()
         commentRow = Comment(commentText=form.cleaned_data['message'],
                                 post=self.object)
+        self.object.commentCounter += 1
+        self.object.save()
         commentRow.save()
         return super().form_valid(form)
 
