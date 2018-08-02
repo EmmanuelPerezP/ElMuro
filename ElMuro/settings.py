@@ -20,12 +20,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#dwzw$0vwl1f^!+$9&b19raqz!!bh6krv^4km4dag)y+j59-^v'
-
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY',
+                            'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pm5%asj6yjpkag')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'www.elmuro.pw',
+    '127.0.0.1'
+]
 
 
 # Application definition
@@ -129,5 +132,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 
-MEDIA_ROOT = '/home/ema/source/ElMuro/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
