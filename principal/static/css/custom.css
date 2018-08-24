@@ -88,3 +88,10 @@ footer a {
 .jumbotron {
     border-radius: 0rem;
 }
+
+#share-buttons img {
+    width: 35px;
+    border: 0;
+    box-shadow: 0;
+    /* display: inline; */
+}

@@ -84,3 +84,15 @@ footer a {
 .card-text {
     font-size: 2rem;
 }
+
+.jumbotron {
+    border-radius: 0rem;
+}
+
+#share-buttons img {
+    width: 20px;
+    padding: 5px;
+    border: 0;
+    box-shadow: 0;
+    /* display: inline; */
+}

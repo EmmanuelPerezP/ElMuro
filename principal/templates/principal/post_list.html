@@ -86,13 +86,18 @@
             <div class="col-5 mt-1 text-right">
               <a href="{{ post.get_absolute_url }}">({{ post.commentCounter}}) Comentarios</a>
             </div>
-            <!-- Your share button code -->
-            <div class="col-2">
-              <div class="fb-share-button" 
-                data-href="{{ post.get_absolute_url }}" 
-                data-layout="button">
-              </div>
+            
+
+            <div id="share-buttons">
+
+            <div class="col-3">
+                <!-- Facebook -->
+            <a href="http://www.facebook.com/sharer.php?u=https://www.elmuro.pw{{ post.get_absolute_url }}" target="_blank">
+              <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+            </a>
             </div>
+            </div>
+
           </div>
           {% comment %} <a href="#" class="btn btn-primary">like</a> {% endcomment %}
         </div>
