@@ -83,19 +83,23 @@
               <div class="like-counter">{{ post.get_score }} likes</div>
             </div>
             
-            <div class="col-5 mt-1 text-right">
+            <div class="col-4 mt-1 text-right">
               <a href="{{ post.get_absolute_url }}">({{ post.commentCounter}}) Comentarios</a>
             </div>
             
-
-            <div id="share-buttons">
-
-            <div class="col-3">
-                <!-- Facebook -->
-            <a href="http://www.facebook.com/sharer.php?u=https://www.elmuro.pw{{ post.get_absolute_url }}" target="_blank">
-              <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
-            </a>
+            <div class="col-2">
+              <!-- Facebook -->
+              <div id="share-buttons">
+                <a href="http://www.facebook.com/sharer.php?u=https://www.elmuro.pw{{ post.get_absolute_url }}" target="_blank">
+                  <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+                </a>
+              </div>
             </div>
+
+            <div class="col-2 col-md-2">
+              <button type="button" class="btn btn-light">
+                <i class="fas fa-share-square " style="font-size: 1rem;"></i>
+              </button>
             </div>
 
           </div>
