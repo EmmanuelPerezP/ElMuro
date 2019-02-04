@@ -13,19 +13,19 @@ https://stackoverflow.com/questions/34140793/bootstrap-4-responsive-cards-in-car
         font-size: 1.5rem;
     }
     .card-columns {
-        column-count: 3;
+        column-count: 6;
     }
 }
 
 @media (min-width: 992px) {
     .card-columns {
-        column-count: 3;
+        column-count: 6;
     }
 }
 
 @media (min-width: 1200px) {
     .card-columns {
-        column-count: 3;
+        column-count: 6;
     }
 }
 
@@ -90,8 +90,7 @@ footer a {
 }
 
 #share-buttons img {
-    width: 20px;
-    padding: 5px;
+    width: 35px;
     border: 0;
     box-shadow: 0;
     /* display: inline; */
