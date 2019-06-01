@@ -1,6 +1,6 @@
 # ElMuro
 
-> Responsive meme page with hot, new and top ranking based in reddit hot algorithm
+> Responsive memes website with hot, new and top post ranking based in reddit hot algorithm
 
 ![](elmuro.gif)
 
@@ -62,7 +62,7 @@ https://docs.djangoproject.com/en/2.0/
 
 ## Deploy
 
-Use gunicorn and nginx for the backend
+Best deployed with nginx and gunicorn as webserver
 
 ## Built With
 
